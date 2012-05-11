@@ -122,5 +122,14 @@ describe User do
     it { should have_selector('title', text: user.name) }
   end
   
+  it { should respond_to(:password_confirmation) }
+  it { should respond_to(:remember_token) }
+  it { should respond_to(:authenticate) }
+  it { should have_link('Sign out') }
+  
+  describe "remember token" do
+    before { @user.save }
+    its(:remember_token) { should_not be_blank }
+  end
 end
 # guides.rubyonrails.org/association_basics.html
